@@ -17,35 +17,50 @@ namespace Events
             var assembly = Assembly.GetExecutingAssembly();
             Console.WriteLine(assembly.FullName);
 
-            var types = assembly.GetTypes();
+            var types = assembly.GetTypes().Where(x => x.GetCustomAttributes<ClockTowerAttribute>().Count() > 0);
 
             foreach(var i in types)
             {
+                System.Console.WriteLine(i.Name);
 
-                Console.WriteLine("Type: " + i.Name);
+                var methods = i.GetMethods().Where(x => x.GetCustomAttributes<ClockTowerChimeAttribute>().Count() > 0);
+
+                foreach(var n in methods)
+                {
+                    System.Console.WriteLine(n.Name);
+                }
                 
-                var x = i.GetProperties();
-                foreach(var n in x)
-                {
-                    Console.WriteLine("Property: " + n.Name + " " + n.PropertyType);
-                    
-                }
-
-                var y = i.GetFields();
-                foreach(var u in y)
-                {
-                    Console.WriteLine("Field: " + u.Name);
-                }
-
-                var m = i.GetMethods();
-                foreach(var h in m.Where(v => v.IsPublic == false))
-                {
-                    Console.WriteLine("Methods: " + h.Name);
-                }
             }
             
-
 
         }
     }
 }
+
+
+// Console.WriteLine("Type: " + i.Name);
+                
+//                 var x = i.GetProperties();
+//                 foreach(var n in x)
+//                 {
+//                     Console.WriteLine("Property: " + n.Name + " " + n.PropertyType);
+                    
+//                 }
+
+//                 var y = i.GetFields();
+//                 foreach(var u in y)
+//                 {
+//                     Console.WriteLine("Field: " + u.Name);
+//                 }
+
+//                 var m = i.GetMethods();
+//                 foreach(var h in m)
+//                 {
+//                     Console.WriteLine("Methods: " + h.Name);
+//                 }
+
+//                 var t = i.GetCustomAttributes();
+//                 foreach(var r in t)
+//                 {
+//                     System.Console.WriteLine("Custom Attributes: " + r.TypeId);
+//                 }
