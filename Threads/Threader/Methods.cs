@@ -10,7 +10,7 @@ namespace Threader
 {
     public static class Methods
     {
-        private static List<string> Data()
+        private static List<string> Links()
         {
             List<string> output = new List<string>();
 
@@ -33,7 +33,7 @@ namespace Threader
 
         public static List<WebsiteDataModel> RunDownloadSync()
         {
-            List<string> websites = Data();
+            List<string> websites = Links();
             List<WebsiteDataModel> output = new List<WebsiteDataModel>();
 
             foreach (string site in websites)
@@ -47,7 +47,7 @@ namespace Threader
 
         public static async Task<List<WebsiteDataModel>> RunDownloadAsync(IProgress<Report> progress)
         {
-            List<string> websites = Data();
+            List<string> websites = Links();
             List<WebsiteDataModel> output = new List<WebsiteDataModel>();
 
             Report report = new Report();
@@ -67,7 +67,7 @@ namespace Threader
 
         public static async Task<List<WebsiteDataModel>> RunDownloadParallelAsync()
         {
-            List<string> websites = Data();
+            List<string> websites = Links();
             List<Task<WebsiteDataModel>> tasks = new List<Task<WebsiteDataModel>>();
 
             foreach (string site in websites)
