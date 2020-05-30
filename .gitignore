@@ -1,5 +1,6 @@
 ## dotnet
 .vscode/
+.vs
 bin/
 obj/
 
